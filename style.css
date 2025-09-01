@@ -1,10 +1,10 @@
 :root {
-  --primary: #6a82fb;
-  --secondary: #fc5c7d;
+  --primary: #43cea2;      /* Green */
+  --secondary: #185a9d;    /* Blue */
   --bg-gradient: linear-gradient(120deg, var(--primary) 0%, var(--secondary) 100%);
   --white: #fff;
   --dark: #222;
-  --accent: #ffb366;
+  --accent: #4fd1c5;       /* Teal accent */
 }
 * { box-sizing: border-box; }
 body {
@@ -92,8 +92,13 @@ nav a:hover {
   text-decoration: none;
   transition: background 0.2s;
 }
+.about {
+  padding: 2rem 1.5rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
 .cta:hover {
-  background: #ffd6a3;
+  background: #43cea2;
 }
 .features {
   display: flex;
@@ -191,4 +196,29 @@ footer {
     padding: 2rem 1rem 1.5rem 1rem;
     max-width: 98vw;
   }
+}
+.contact-btn, .linkedin-btn {
+  display: inline-block;
+  margin: 0.5rem 0.5rem 0 0;
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+.contact-btn {
+  background: #0073e6;
+  color: #fff;
+  border: none;
+}
+.contact-btn:hover {
+  background: #005bb5;
+}
+.linkedin-btn {
+  background: #0077b5;
+  color: #fff;
+  border: none;
+}
+.linkedin-btn:hover {
+  background: #005983;
 }
