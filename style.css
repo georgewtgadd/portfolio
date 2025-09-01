@@ -133,11 +133,40 @@ nav a:focus {
   border-radius: 2.5rem;
   box-shadow: 0 8px 32px rgba(24,90,157,0.18);
   padding: 4rem 2rem 3rem 2rem;
-  margin: 4rem auto 4rem auto;
+  margin: 0;
   max-width: 900px;
   text-align: center;
-  position: relative;
-  overflow: hidden;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 1000;
+  overflow-y: auto;
+  display: none;
+  animation: fadeIn 0.5s;
+}
+
+.audio-panel.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.hide-main {
+  display: none !important;
+}
+
+.close-audio-panel {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  z-index: 1001;
 }
 
 .audio-panel h2 {
