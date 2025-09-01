@@ -7,59 +7,33 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#audio">Audio</a>
-    <a href="#video">Video</a>
-    <a href="#web">Web</a>
-    <a href="#contact">Contact</a>
+  <nav aria-label="Main navigation" role="navigation">
+    <a href="#home" id="nav-home">Home</a>
+    <a href="#audio" id="nav-audio">Audio</a>
+    <a href="#video" id="nav-video">Video</a>
+    <a href="#web" id="nav-web">Web</a>
+    <a href="#contact" id="nav-contact">Contact</a>
   </nav>
-
-  <section class="hero" id="home">
-    <div class="hero-img-bg">
-      <img src="profile.jpg" alt="George Gadd performing" class="hero-img"/>
-    </div>
-    <div class="hero-content">
-      <h1>George Gadd</h1>
-      <p>Developer • Designer • Creator<br>
-      Audio, Video & Web Experiences</p>
-      <a href="#contact" class="cta">Get in Touch</a>
-    </div>
-  </section>
-
-  <!-- AUDIO SECTION -->
-  <section class="audio-panel" id="audio" aria-labelledby="audio-heading">
-    <h2 id="audio-heading">Audio: It's Notts Just Physio Podcast</h2>
-    <div class="audio-images">
-      <img src="pod1.jpg" alt="Podcast recording session" class="audio-img"/>
-      <img src="map.jpg" alt="Podcast reach map" class="audio-img"/>
-    </div>
+  <main id="main-content">
+<!-- Banner/Hero Section -->
+<section id="banner">
+  <div class="inner">
+    <img src="profile.jpg" alt="George Gadd performing on stage, holding a guitar" class="profile-img"/>
+    <h2>George Gadd</h2>
     <p>
-      Qualified sound engineer with a BSc (Hons), I have recently acted as producer on the "<strong>It's Notts Just Physio</strong>" podcast. This podcast has been instrumental in bridging the gap between staff and student relationships post-COVID, as well as acting as a platform for staff and students to promote their work and as a learning resource.
+      Award-winning Learning Technologist &amp; Instructional Designer<br>
+      Accessibility &amp; UX Advocate (WCAG/PSBAR)<br>
+      Audio &amp; Video Production | PRINCE2 Qualified<br>
+      BSc (Hons) Sound Engineering &amp; Multimedia Production
     </p>
-    <ul class="podcast-stats">
-      <li>30+ episodes</li>
-      <li>3,000 listens</li>
-      <li>Accessed worldwide</li>
-      <li>Platform for staff onboarding</li>
-      <li>Presented at annual Teaching and Learning Festival</li>
-      <li>Used by students for CPD</li>
-      <li>Cited by potential students and staff in interviews</li>
+    <ul class="actions special">
+      <li><a href="#contact" class="button primary">Get in Touch</a></li>
     </ul>
-    <blockquote class="pull-quote">
-      ‘It’s Notts Just Physio’ represents a distinctive pedagogical resource within the BSc Physiotherapy curriculum, fostering a sense of identity and community among students. The ‘Welcome Week’ podcast playlist facilitates the integration of new students, while the broader series encompasses learning materials, career guidance, and wellbeing support, positioning staff as accessible role models.
-    </blockquote>
-    <p class="quote-attribution">
-      Professor Roger Kerry, Academic Plan Lead 'BSc (hons) Physiotherapy)
-    </p>
-    <div style="margin: 1.5rem 0;">
-      <div id='buzzsprout-large-player'></div>
-      <script type='text/javascript' charset='utf-8' src='https://www.buzzsprout.com/2332180.js?container_id=buzzsprout-large-player&player=large'></script>
-    </div>
-    <a href="audio.html" class="learn-more-btn" role="button" aria-label="Learn more about It's Notts Just Physio Podcast">Learn More</a>
-  </section>
+  </div>
+</section>
+<!--Features-->
 
-  <section class="features">
+    <section class="features">
     <div class="feature-card" id="audio-feature">
       <div class="feature-icon">🎵</div>
       <h2>Audio</h2>
@@ -77,6 +51,41 @@
     </div>
   </section>
 
+  <!-- AUDIO SECTION -->
+  <section class="audio-panel" id="audio" aria-labelledby="audio-heading">
+    <h2 id="audio-heading">Audio: It's Notts Just Physio Podcast</h2>
+    <div class="audio-images">
+      <img src="pod1.jpg" alt="Podcast recording session" class="audio-img"/>
+      <img src="map.jpg" alt="Podcast reach map" class="audio-img"/>
+    </div>
+    <p>
+I recently served as producer for the "It's Notts Just Physio" podcast. The podcast has played a key role in strengthening staff–student engagement in the post-COVID context, while also providing a platform for showcasing the work of staff and students and serving as a valuable educational resource.    </p>
+    <ul class="podcast-stats">
+      <li>30+ episodes</li>
+      <li>3,000 listens accessed worldwide</li>
+      <li>Platform for staff onboarding</li>
+      <li>Presented at the Teaching and Learning Conference</li>
+      <li>Used by students for CPD</li>
+      <li>Cited by potential students and staff in interviews</li>
+    </ul>
+    <blockquote class="pull-quote">
+      ‘It’s Notts Just Physio’ represents a distinctive pedagogical resource within the BSc Physiotherapy curriculum, fostering a sense of identity and community among students. The ‘Welcome Week’ podcast playlist facilitates the integration of new students, while the broader series encompasses learning materials, career guidance, and wellbeing support, positioning staff as accessible role models.
+    </blockquote>
+    <p class="quote-attribution">
+      Professor Roger Kerry, Academic Plan Lead 'BSc (hons) Physiotherapy)
+    </p>
+    <div style="margin: 1.5rem 0;">
+      <div id='buzzsprout-large-player'></div>
+      <script type='text/javascript' charset='utf-8' src='https://www.buzzsprout.com/2332180.js?container_id=buzzsprout-large-player&player=large'></script>
+    </div>
+    <a href="audio.html" class="learn-more-btn" role="button" aria-label="Learn more about It's Notts Just Physio Podcast">Learn More</a>
+  </section>
+
+  <!-- VIDEO SECTION -->
+  <section class="video-panel" id="video" aria-labelledby="video-heading">
+
+    <!--Web-->
+<!--Contact-->
   <section class="contact" id="contact">
     <h2>Contact</h2>
     <p>Let's connect! Reach out via email:</p>
@@ -85,5 +94,18 @@
   <footer>
     &copy; 2025 George Gadd. All rights reserved.
   </footer>
+  <script>
+    // Show audio panel and hide main content
+    document.getElementById('nav-audio').addEventListener('click', function(e) {
+      e.preventDefault();
+      document.getElementById('audio-panel').classList.add('active');
+      document.getElementById('main-content').classList.add('hide-main');
+    });
+    // Close audio panel
+    document.querySelector('.close-audio-panel').addEventListener('click', function() {
+      document.getElementById('audio-panel').classList.remove('active');
+      document.getElementById('main-content').classList.remove('hide-main');
+    });
+  </script>
 </body>
 </html>
