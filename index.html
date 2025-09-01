@@ -4,119 +4,86 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>George Gadd - Portfolio</title>
-  <!-- Link to Spectral CSS. Download spectral from html5up.net and adjust the path as needed -->
-  <link rel="stylesheet" href="style.css"> 
+  <link rel="stylesheet" href="style.css">
 </head>
-<body class="is-preload">
+<body>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#audio">Audio</a>
+    <a href="#video">Video</a>
+    <a href="#web">Web</a>
+    <a href="#contact">Contact</a>
+  </nav>
 
-  <!-- Header -->
-  <header id="header">
-    <h1><a href="#home">George Gadd</a></h1>
-    <nav id="nav">
-      <ul>
-        <li><a href="#audio">Audio</a></li>
-        <li><a href="#video">Video</a></li>
-        <li><a href="#web">Web</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
-
-<!-- Banner/Hero Section -->
-<section id="banner">
-  <div class="inner">
-    <img src="profile.jpg" alt="George Gadd performing on stage, holding a guitar" class="profile-img"/>
-    <h2>George Gadd</h2>
-    <p>
-      Award-winning Learning Technologist &amp; Instructional Designer<br>
-      Accessibility &amp; UX Advocate (WCAG/PSBAR)<br>
-      Audio &amp; Video Production | PRINCE2 Qualified<br>
-      BSc (Hons) Sound Engineering &amp; Multimedia Production
-    </p>
-    <ul class="actions special">
-      <li><a href="#contact" class="button primary">Get in Touch</a></li>
-    </ul>
-  </div>
-</section>
-
-  <!-- Audio Section -->
-  <section id="about" class="wrapper style2 special">
-    <span class="image"><img src="pod1.jpg" alt="Podcast recording session" /></span>
-    <div class="content">
-      <h2>Audio: It's Notts Just Physio Podcast</h2>
-      <p>
-        Qualified sound engineer with a BSc (Hons), I have recently acted as producer on the "<strong>It's Notts Just Physio</strong>" podcast. This podcast has been instrumental in bridging the gap b[...]
-      </p>
-      <ul class="podcast-stats">
-        <li>30+ episodes</li>
-        <li>3,000 listens</li>
-        <li>Accessed worldwide</li>
-        <li>Platform for staff onboarding</li>
-        <li>Presented at annual Teaching and Learning Festival</li>
-        <li>Used by students for CPD</li>
-        <li>Cited by potential students and staff in interviews</li>
-      </ul>
-      <img src="map.png" alt="A amp demonstrating the stats where It's Notts Just Physio has been accessed">
-      <blockquote class="pull-quote">
-        ‘It’s Notts Just Physio’ represents a distinctive pedagogical resource within the BSc Physiotherapy curriculum, fostering a sense of identity and community among students. The ‘Welcome[...]
-      </blockquote>
-      <p class="quote-attribution">
-        Professor Roger Kerry, Academic Plan Lead 'BSc (hons) Physiotherapy)
-      </p>
-      <div>
-        <div id='buzzsprout-large-player'></div>
-        <script type='text/javascript' charset='utf-8' src='https://www.buzzsprout.com/2332180.js?container_id=buzzsprout-large-player&player=large'></script>
-      </div>
-      <ul class="actions">
-        <li><a href="audio.html" class="button">Learn More</a></li>
-      </ul>
+  <section class="hero" id="home">
+    <div class="hero-img-bg">
+      <img src="profile.jpg" alt="George Gadd performing" class="hero-img"/>
+    </div>
+    <div class="hero-content">
+      <h1>George Gadd</h1>
+      <p>Developer • Designer • Creator<br>
+      Audio, Video & Web Experiences</p>
+      <a href="#contact" class="cta">Get in Touch</a>
     </div>
   </section>
 
-  <!-- Video Section -->
-  <section id="video" class="spotlight style2">
-    <span class="image"><img src="video.jpg" alt="Filmmaking and video editing" /></span>
-    <div class="content">
+  <!-- AUDIO SECTION -->
+  <section class="audio-panel" id="audio" aria-labelledby="audio-heading">
+    <h2 id="audio-heading">Audio: It's Notts Just Physio Podcast</h2>
+    <div class="audio-images">
+      <img src="pod1.jpg" alt="Podcast recording session" class="audio-img"/>
+      <img src="map1.jpg" alt="Podcast reach map" class="audio-img"/>
+    </div>
+    <p>
+      Qualified sound engineer with a BSc (Hons), I have recently acted as producer on the "<strong>It's Notts Just Physio</strong>" podcast. This podcast has been instrumental in bridging the gap between staff and student relationships post-COVID, as well as acting as a platform for staff and students to promote their work and as a learning resource.
+    </p>
+    <ul class="podcast-stats">
+      <li>30+ episodes</li>
+      <li>3,000 listens</li>
+      <li>Accessed worldwide</li>
+      <li>Platform for staff onboarding</li>
+      <li>Presented at annual Teaching and Learning Festival</li>
+      <li>Used by students for CPD</li>
+      <li>Cited by potential students and staff in interviews</li>
+    </ul>
+    <blockquote class="pull-quote">
+      ‘It’s Notts Just Physio’ represents a distinctive pedagogical resource within the BSc Physiotherapy curriculum, fostering a sense of identity and community among students. The ‘Welcome Week’ podcast playlist facilitates the integration of new students, while the broader series encompasses learning materials, career guidance, and wellbeing support, positioning staff as accessible role models.
+    </blockquote>
+    <p class="quote-attribution">
+      Professor Roger Kerry, Academic Plan Lead 'BSc (hons) Physiotherapy)
+    </p>
+    <div style="margin: 1.5rem 0;">
+      <div id='buzzsprout-large-player'></div>
+      <script type='text/javascript' charset='utf-8' src='https://www.buzzsprout.com/2332180.js?container_id=buzzsprout-large-player&player=large'></script>
+    </div>
+    <a href="audio.html" class="learn-more-btn" role="button" aria-label="Learn more about It's Notts Just Physio Podcast">Learn More</a>
+  </section>
+
+  <section class="features">
+    <div class="feature-card" id="audio-feature">
+      <div class="feature-icon">🎵</div>
+      <h2>Audio</h2>
+      <p>Music production, live shows, audio editing, and sound design. Crafting immersive sonic experiences for audiences.</p>
+    </div>
+    <div class="feature-card" id="video">
+      <div class="feature-icon">🎥</div>
       <h2>Video</h2>
       <p>Filmmaking and video editing with a creative edge. Capturing moments and telling stories through visuals.</p>
     </div>
-  </section>
-
-  <!-- Web Section -->
-  <section id="web" class="spotlight style3">
-    <span class="image"><img src="web.jpg" alt="Web design and development" /></span>
-    <div class="content">
+    <div class="feature-card" id="web">
+      <div class="feature-icon">💻</div>
       <h2>Web</h2>
       <p>Modern, responsive websites and apps. From design to deployment, delivering engaging digital experiences.</p>
     </div>
   </section>
 
-  <!-- Contact Section -->
-  <section id="contact" class="wrapper style2 special">
-    <div class="inner">
-      <header class="major">
-        <h2>Contact</h2>
-      </header>
-      <p>Let's connect! Reach out via email or LinkedIn:</p>
-      <ul class="actions special">
-        <li><a href="mailto:georgewtgadd@gmail.com" class="button primary">Email Me</a></li>
-        <li><a href="https://www.linkedin.com/in/georgegadd/" target="_blank" rel="noopener" class="button">LinkedIn</a></li>
-      </ul>
-    </div>
+  <section class="contact" id="contact">
+    <h2>Contact</h2>
+    <p>Let's connect! Reach out via email:</p>
+    <a href="mailto:georgewtgadd@gmail.com" class="email">georgewtgadd@gmail.com</a>
   </section>
-
-  <!-- Footer -->
-  <footer id="footer">
-    <p>&copy; 2025 George Gadd. All rights reserved.</p>
+  <footer>
+    &copy; 2025 George Gadd. All rights reserved.
   </footer>
-
-  <!-- Scripts: Spectral template uses these for features like smooth scrolling and responsive menu. -->
-  <script src="assets/js/jquery.min.js"></script>
-  <script src="assets/js/jquery.scrollex.min.js"></script>
-  <script src="assets/js/jquery.scrolly.min.js"></script>
-  <script src="assets/js/browser.min.js"></script>
-  <script src="assets/js/breakpoints.min.js"></script>
-  <script src="assets/js/util.js"></script>
-  <script src="assets/js/main.js"></script>
 </body>
 </html>
