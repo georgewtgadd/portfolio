@@ -1,11 +1,10 @@
-
 :root {
-  --primary: #43cea2;      /* Green */
-  --secondary: #185a9d;    /* Blue */
+  --primary: #43cea2;
+  --secondary: #185a9d;
   --bg-gradient: linear-gradient(120deg, var(--primary) 0%, var(--secondary) 100%);
   --white: #fff;
   --dark: #222;
-  --accent: #4fd1c5;       /* Teal accent */
+  --accent: #4fd1c5;
 }
 
 * { box-sizing: border-box; }
@@ -18,11 +17,11 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  font-size: 1.1rem; /* Increased for readability */
+  font-size: 1.1rem;
 }
 
 nav {
-  background: rgba(34,34,34,0.95); /* Darker for contrast */
+  background: rgba(34,34,34,0.95);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -55,7 +54,7 @@ nav a:focus {
   align-items: center;
   justify-content: center;
   padding: 5rem 2rem 3rem 2rem;
-  background: rgba(34,34,34,0.18); /* Slightly darker for contrast */
+  background: rgba(34,34,34,0.18);
   min-height: 50vh;
 }
 
@@ -123,9 +122,105 @@ nav a:focus {
   padding: 2rem 1.5rem;
   max-width: 700px;
   margin: 0 auto;
-  background: rgba(34,34,34,0.85); /* Dark background for contrast */
+  background: rgba(34,34,34,0.85);
   color: var(--white);
   border-radius: 12px;
+}
+
+.audio-panel {
+  background: linear-gradient(135deg, #43cea2 0%, #185a9d 100%);
+  color: #fff;
+  border-radius: 2.5rem;
+  box-shadow: 0 8px 32px rgba(24,90,157,0.18);
+  padding: 4rem 2rem 3rem 2rem;
+  margin: 4rem auto 4rem auto;
+  max-width: 900px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.audio-panel h2 {
+  font-size: 2.5rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  margin-bottom: 2rem;
+  color: #fff;
+  text-shadow: 0 4px 24px rgba(24,90,157,0.18);
+}
+
+.audio-images {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.audio-img {
+  width: 220px;
+  height: auto;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 24px rgba(24,90,157,0.18);
+  border: 3px solid #fff;
+  object-fit: cover;
+}
+
+.podcast-stats {
+  display: inline-block;
+  text-align: left;
+  margin: 2rem auto 2rem auto;
+  padding: 1.2rem 2rem;
+  background: rgba(255,255,255,0.08);
+  border-radius: 1rem;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.pull-quote {
+  font-style: italic;
+  background: rgba(255,255,255,0.18);
+  color: #fff;
+  border-left: 6px solid #43cea2;
+  padding: 1.5rem 2rem;
+  margin: 2.5rem 0 1rem 0;
+  border-radius: 1rem;
+  font-size: 1.25rem;
+  text-shadow: 0 2px 12px rgba(24,90,157,0.12);
+}
+
+.quote-attribution {
+  font-size: 1.1rem;
+  color: #fff;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  margin-left: 1.5rem;
+  text-shadow: 0 2px 12px rgba(24,90,157,0.12);
+}
+
+.learn-more-btn {
+  display: inline-block;
+  margin-top: 2rem;
+  padding: 1rem 2.5rem;
+  background: #fff;
+  color: #185a9d;
+  font-weight: 800;
+  font-size: 1.15rem;
+  border-radius: 2rem;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(24,90,157,0.13);
+  transition: background 0.2s, color 0.2s, outline 0.2s;
+  outline: none;
+  border: none;
+  letter-spacing: 1px;
+}
+
+.learn-more-btn:hover,
+.learn-more-btn:focus {
+  background: #43cea2;
+  color: #fff;
+  outline: 3px solid #185a9d;
+  outline-offset: 2px;
 }
 
 .features {
@@ -137,7 +232,7 @@ nav a:focus {
 }
 
 .feature-card {
-  background: rgba(34,34,34,0.92); /* Darker for better contrast */
+  background: rgba(34,34,34,0.92);
   border-radius: 14px;
   box-shadow: 0 2px 12px rgba(0,0,0,0.12);
   max-width: 320px;
@@ -175,7 +270,7 @@ nav a:focus {
 .contact {
   text-align: center;
   padding: 3rem 2rem 2rem 2rem;
-  background: rgba(34,34,34,0.92); /* Darker for contrast */
+  background: rgba(34,34,34,0.92);
   border-radius: 14px;
   max-width: 440px;
   margin: 0 auto 2rem auto;
@@ -257,9 +352,12 @@ footer {
     max-width: 100%;
     margin-bottom: 2rem;
   }
+  .audio-panel {
+    padding: 2rem 1rem 2rem 1rem;
+  }
 }
 
-@media (max-width: 600px) 
+@media (max-width: 600px) {
   .hero h1 {
     font-size: 2.2rem;
   }
@@ -275,65 +373,11 @@ footer {
   }
   .contact {
     padding: 2rem 1rem 1.5rem 1rem;
-    max-width:
-
-      .audio-panel {
-  background: linear-gradient(120deg, #185a9d 0%, #43cea2 100%);
-  color: #222;
-  border-radius: 18px;
-  box-shadow: 0 4px 32px rgba(34,34,34,0.18);
-  padding: 3rem 2rem;
-  margin: 3rem auto 3rem auto;
-  max-width: 800px;
-  border: 3px solid #4fd1c5;
-}
-
-.audio-panel h2 {
-  color: #185a9d;
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
-  font-weight: 800;
-  letter-spacing: 2px;
-}
-
-.audio-images {
-  display: flex;
-  gap: 1.5rem;
-  justify-content: center;
-  margin-bottom: 2rem;
-}
-
-.audio-img {
-  width: 180px;
-  height: auto;
-  border-radius: 12px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.12);
-  border: 2px solid #43cea2;
-  object-fit: cover;
-}
-
-.podcast-stats {
-  list-style: disc inside;
-  margin: 1.5rem 0 2rem 0;
-  padding-left: 0;
-  color: #185a9d;
-  font-weight: 600;
-}
-
-.pull-quote {
-  font-style: italic;
-  background: #e6f9f4;
-  color: #185a9d;
-  border-left: 5px solid #43cea2;
-  padding: 1.2rem 1.5rem;
-  margin: 2rem 0 0.5rem 0;
-  border-radius: 8px;
-  font-size: 1.15rem;
-}
-
-.quote-attribution {
-  font-size: 1rem;
-  color: #222;
-  font-weight: 700;
-  margin-bottom: 2rem;
-  margin
+    max-width: 98vw;
+  }
+  .audio-panel {
+    padding: 1.2rem 0.5rem 1.2rem 0.5rem;
+  }
+  .audio-img {
+    width: 120px;
+  }
