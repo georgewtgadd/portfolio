@@ -7,54 +7,56 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <nav>
+  <nav aria-label="Main navigation" role="navigation">
     <a href="#home">Home</a>
-    <a href="#audio">Audio</a>
+    <a href="audio.html">Audio</a>
     <a href="#video">Video</a>
     <a href="#web">Web</a>
     <a href="#contact">Contact</a>
   </nav>
-  <section class="hero" id="home">
-    <div class="hero-img-bg">
-      <img src="profile.jpg" alt="George Gadd performing" class="hero-img"/>
-    </div>
-    <div class="hero-content">
-      <h1>George Gadd</h1>
-      <p>Developer • Designer • Creator<br>
-      Audio, Video & Web Experiences</p>
-      <a href="#contact" class="cta">Get in Touch</a>
-    </div>
-  </section>
-    <section class="about">
-    <h2>About Me</h2>
-    <p>
-      I’m a digital creator with a foundation in learning technologies, working alongside subject matter experts to design interactive curricula and multimedia resources that meet both pedagogical and accessibility standards. I specialise in transforming complex content into engaging, user-friendly experiences, blending creativity with technology to support learners effectively. Collaborative and solution-focused, I aim to deliver digital learning that is inclusive, impactful, and designed to enhance the overall educational journey.
-    </p>
-  </section>
-  <section class="features">
-    <div class="feature-card" id="audio">
-      <div class="feature-icon">🎵</div>
-      <h2>Audio</h2>
-      <p>Music production, live shows, audio editing, and sound design. Crafting immersive sonic experiences for audiences.</p>
-    </div>
-    <div class="feature-card" id="video">
-      <div class="feature-icon">🎥</div>
-      <h2>Video</h2>
-      <p>Filmmaking and video editing with a creative edge. Capturing moments and telling stories through visuals.</p>
-    </div>
-    <div class="feature-card" id="web">
-      <div class="feature-icon">💻</div>
-      <h2>Web</h2>
-      <p>Modern, responsive websites and apps. From design to deployment, delivering engaging digital experiences.</p>
-    </div>
-  </section>
-<section class="contact" id="contact">
-  <h2>Contact</h2>
-  <p>Let's connect! Reach out via email or LinkedIn:</p>
-  <a href="mailto:georgewtgadd@gmail.com" class="contact-btn">Email Me</a>
-  <a href="https://www.linkedin.com/in/georgegadd/" target="_blank" rel="noopener" class="linkedin-btn">LinkedIn</a>
-</section>  <footer>
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-img-bg">
+        <img src="profile.jpg" alt="George Gadd performing on stage, holding a guitar" class="hero-img"/>
+      </div>
+      <div class="hero-content">
+        <h1>George Gadd</h1>
+        <p>Developer • Designer • Creator<br>
+        Audio, Video & Web Experiences</p>
+        <a href="#contact" class="cta" role="button" aria-label="Contact George Gadd">Get in Touch</a>
+      </div>
+    </section>
+    <section class="about" aria-labelledby="about-heading">
+      <h2 id="about-heading">About Me</h2>
+      <p>
+        I’m a digital creator with a foundation in learning technologies, working alongside subject matter experts to design interactive curricula and multimedia resources that meet both pedagogical and accessibility standards. I specialise in transforming complex content into engaging, user-friendly experiences, blending creativity with technology to support learners effectively. Collaborative and solution-focused, I aim to deliver digital learning that is inclusive, impactful, and designed to enhance the overall educational journey.
+      </p>
+    </section>
+    <section class="features" aria-label="Featured Work">
+      <div class="feature-card" id="audio">
+        <div class="feature-icon" aria-hidden="true">🎵</div>
+        <h2>Audio</h2>
+        <p>Music production, live shows, audio editing, and sound design. Crafting immersive sonic experiences for audiences.</p>
+      </div>
+      <div class="feature-card" id="video">
+        <div class="feature-icon" aria-hidden="true">🎥</div>
+        <h2>Video</h2>
+        <p>Filmmaking and video editing with a creative edge. Capturing moments and telling stories through visuals.</p>
+      </div>
+      <div class="feature-card" id="web">
+        <div class="feature-icon" aria-hidden="true">💻</div>
+        <h2>Web</h2>
+        <p>Modern, responsive websites and apps. From design to deployment, delivering engaging digital experiences.</p>
+      </div>
+    </section>
+    <section class="contact" id="contact" aria-labelledby="contact-heading">
+      <h2 id="contact-heading">Contact</h2>
+      <p>Let's connect! Reach out via email or LinkedIn:</p>
+      <a href="mailto:georgewtgadd@gmail.com" class="contact-btn" role="button" aria-label="Email George Gadd">Email Me</a>
+      <a href="https://www.linkedin.com/in/georgegadd/" target="_blank" rel="noopener" class="linkedin-btn" role="button" aria-label="Connect with George Gadd on LinkedIn">LinkedIn</a>
+    </section>
+  </main>
+  <footer>
     &copy; 2025 George Gadd. All rights reserved.
   </footer>
 </body>
-</html>
