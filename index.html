@@ -1,1 +1,115 @@
-<p>Hello world!</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Welcome to My Portfolio</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
+      color: #222;
+    }
+    header {
+      background: rgba(255,255,255,0.7);
+      padding: 2rem 0 1rem 0;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      letter-spacing: 2px;
+    }
+    header p {
+      color: #555;
+      margin-top: 0.5rem;
+      font-size: 1.1rem;
+    }
+    .cta-button {
+      display: inline-block;
+      margin-top: 1.5rem;
+      padding: 0.75rem 2rem;
+      background: #4f8cff;
+      color: #fff;
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      text-decoration: none;
+      box-shadow: 0 4px 10px rgba(79,140,255,0.18);
+      transition: background 0.2s;
+    }
+    .cta-button:hover {
+      background: #3477e2;
+    }
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 3rem 0;
+      gap: 2rem;
+    }
+    .feature-card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      max-width: 300px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: transform 0.2s;
+    }
+    .feature-card:hover {
+      transform: translateY(-5px) scale(1.03);
+    }
+    .feature-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #4f8cff;
+    }
+    footer {
+      text-align: center;
+      padding: 1.5rem 0;
+      background: rgba(255,255,255,0.7);
+      color: #444;
+      font-size: 0.95rem;
+      margin-top: 2rem;
+    }
+    @media (max-width: 700px) {
+      .features {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>George Gadd</h1>
+    <p>Developer • Designer • Creator</p>
+    <a href="#contact" class="cta-button">Contact Me</a>
+  </header>
+
+  <section class="features">
+    <div class="feature-card">
+      <div class="feature-icon">💻</div>
+      <h2>Web Development</h2>
+      <p>Modern, responsive web apps built with the latest technologies.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🎨</div>
+      <h2>UI/UX Design</h2>
+      <p>Clean, thoughtful interfaces that delight users and drive engagement.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🚀</div>
+      <h2>Startup Solutions</h2>
+      <p>Helping startups launch fast with MVPs and rapid prototyping.</p>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 George Gadd. All rights reserved.
+  </footer>
+</body>
+</html>
