@@ -121,8 +121,9 @@ nav a:focus {
 /* ACCESSIBLE ABOUT SECTION - HIGH CONTRAST TEXT */
 .wrapper.style1.special .inner,
 .wrapper.style1.special .major,
-.wrapper.style1.special .major p,
-.wrapper.style1.special h2 {
+.wrapper.style1.special .major p {
+  color: #fff !important;
+.wrapper.style1.special h2 {  
   color: #fff !important; /* Accessible, passes WCAG AA+ */
 }
 
