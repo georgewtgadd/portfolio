@@ -141,23 +141,36 @@ I’m a digital creator with a BSc (Hons) in Sound Engineering and Multimedia, s
 
 <!-- Virtual Placement Section -->
 <section id="two" class="wrapper alt style2">
-<section class="spotlight">
-  <!-- Left Side: Content -->
-  <div class="content" style="flex: 1 1 350px; min-width: 300px;">
-    <h2>Web Design</h2>
-    <p>
-      Design of a bespoke "Virtual Placement" VLE in response to shortage of student placements. Students are introduced to their practice supervisor Krish who guides them along their learning journey where they will complete home visits to a virtual patient Lionel.
-      <!-- ... -->
-    </p>
-  </div>
+  <section class="spotlight" style="display: flex; gap: 2rem; align-items: flex-start; flex-wrap: wrap; padding-top: 3rem;">
+    <!-- Left Side: Content -->
+    <div class="content" style="flex: 1 1 350px; min-width: 300px;">
+      <h2>Web Design</h2>
+      <p>
+        Design of a bespoke "Virtual Placement" VLE in response to shortage of student placements. Students are introduced to their practice supervisor Krish who guides them along their learning journey where they will complete home visits to a virtual patient Lionel.
+      </p>
+      <p>
+        This project utilises AJAX, jQuery, JavaScript, PHP, CSS, and HTML to deliver a rich, interactive learning experience.
+      </p>
+    </div>
 
-  <!-- Right Side: Screenshot Placeholders -->
-  <div class="media" style="flex: 1 1 350px; min-width: 300px; display: flex; flex-direction: column; gap: 1rem;">
-    <img src="vp1.png" alt="Screenshot of Virtual Placement Landing Page" style="max-width: 100%; height: auto; max-height: 180px; object-fit: contain; border-radius: 8px;">
-    <img src="vp2.png" alt="Screenshot of Virtual Placement Chat" style="max-width: 100%; height: auto; max-height: 180px; object-fit: contain; border-radius: 8px;">
-  </div>
+    <!-- Right Side: Screenshot Placeholders -->
+    <div class="media" style="flex: 1 1 350px; min-width: 300px; display: flex; flex-direction: column; gap: 1rem;">
+      <div class="screenshot-thumb">
+        <img src="vp1.png" alt="Screenshot of Virtual Placement Landing Page" class="expandable-img">
+      </div>
+      <div class="screenshot-thumb">
+        <img src="vp2.png" alt="Screenshot of Virtual Placement Chat" class="expandable-img">
+      </div>
+      <small style="margin-top:0.5rem; color:#666;">Click images to expand</small>
+    </div>
+  </section>
 </section>
 
+<!-- Modal for expanded image -->
+<div id="imgModal" class="modal" style="display:none;">
+  <span class="close" style="position:absolute;top:15px;right:35px;font-size:40px;font-weight:bold;cursor:pointer;">&times;</span>
+  <img class="modal-content" id="modalImg" style="display:block;margin:auto;max-width:90vw;max-height:90vh;">
+</div>
 				<!-- Contact -->
 					<section id="contact" class="wrapper style4">
 						<div class="inner">
@@ -199,6 +212,7 @@ I’m a digital creator with a BSc (Hons) in Sound Engineering and Multimedia, s
 			<script src="assets/js/main.js"></script>
 	</body>
 </html>
+
 
 
 
