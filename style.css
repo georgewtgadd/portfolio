@@ -419,3 +419,50 @@ footer {
   border-radius: 8px;
   display: block;
 }
+
+/* Add these styles for image thumbnails and modal */
+.screenshot-thumb img.expandable-img {
+  max-width: 100%;
+  max-height: 220px;
+  object-fit: contain;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+}
+
+.screenshot-thumb img.expandable-img:hover {
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+
+.modal {
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  max-width: 90vw;
+  max-height: 90vh;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+  border-radius: 10px;
+}
+
+.close {
+  color: #fff;
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 10001;
+}
