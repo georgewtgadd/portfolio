@@ -411,3 +411,11 @@ footer {
     width: 120px;
   }
 }
+.media img {
+  max-width: 100%;
+  height: auto;
+  max-height: 180px;
+  object-fit: contain;
+  border-radius: 8px;
+  display: block;
+}
