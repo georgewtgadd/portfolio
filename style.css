@@ -118,13 +118,12 @@ nav a:focus {
   outline-offset: 2px;
 }
 
-.about {
-  padding: 2rem 1.5rem;
-  max-width: 700px;
-  margin: 0 auto;
-  background: rgba(34,34,34,0.85);
-  color: var(--white);
-  border-radius: 12px;
+/* ACCESSIBLE ABOUT SECTION - HIGH CONTRAST TEXT */
+.wrapper.style1.special .inner,
+.wrapper.style1.special .major,
+.wrapper.style1.special .major p,
+.wrapper.style1.special h2 {
+  color: #ffe956 !important; /* Accessible yellow */
 }
 
 .audio-panel {
@@ -481,5 +480,3 @@ footer {
   cursor: pointer;
   z-index: 10001;
 }
-
-/* Responsive tweaks for virtual placement */
