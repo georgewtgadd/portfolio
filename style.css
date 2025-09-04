@@ -304,7 +304,9 @@ nav a:focus {
   margin: 0 auto 2rem auto;
   color: var(--white);
 }
-
+.contact p {
+  color: #fff !important;
+}
 .contact h2 {
   font-size: 1.7rem;
   margin-bottom: 1rem;
