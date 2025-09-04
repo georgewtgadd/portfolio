@@ -125,7 +125,7 @@ nav a:focus {
 .wrapper.style1.special .major p {
   color: #fff !important;
 .wrapper.style1.special h2 {  
-  color: #fff !important; /* Accessible, passes WCAG AA+ */
+  color: #fff !important;
 }
 
 .audio-panel {
