@@ -159,9 +159,11 @@ input, select, textarea {
 		font-style: italic;
 	}
 
-	p {
-		margin: 0 0 2em 0;
-	}
+p {
+  margin: 0 0 2em 0;
+  color: #fff;
+}
+
 
 	h1, h2, h3, h4, h5, h6 {
 		color: #fff;
@@ -4035,6 +4037,7 @@ input, select, textarea {
 	body.is-mobile.landing #footer {
 		background-color: #1d242a;
 	}
+
 
 
 
