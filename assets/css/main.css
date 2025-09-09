@@ -2684,21 +2684,20 @@ input, select, textarea {
 }
 
 /* Video & Screenshot Wrappers */
-.video-container,
-.screenshot-container {
+.video-container {
   width: 100%;
-  max-width: 100%;
-  margin: 0 auto;
+  max-width: 800px;       /* optional max width */
+  margin: 0 auto;         /* centers video */
+  aspect-ratio: 16 / 9;   /* preserves 16:9 ratio automatically */
 }
 
-.video-container iframe,
-.screenshot-container img,
-.spotlight .image img {
+.video-container iframe {
   width: 100%;
-  height: auto;
+  height: 100%;
   border-radius: 8px;
   display: block;
 }
+
 /* Content Column */
 .spotlight .content {
   order: 2;
@@ -3978,6 +3977,7 @@ input, select, textarea {
 	body.is-mobile.landing #footer {
 		background-color: #1d242a;
 	}
+
 
 
 
