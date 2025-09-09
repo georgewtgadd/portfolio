@@ -5,6 +5,7 @@
 	Spectral by HTML5 UP
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+
 */
 
 html, body, div, span, applet, object,
@@ -2763,10 +2764,19 @@ input, select, textarea {
 				.spotlight br {
 					display: none;
 				}
+.spotlight .image {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-right: 2.5rem;
+}
 
-				.spotlight .image {
-					width: 100%;
-				}
+.spotlight .image img,
+.spotlight .image iframe {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
 
 				.spotlight .content {
 					padding: 4em 3em 2em 3em ;
