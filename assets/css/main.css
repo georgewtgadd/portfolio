@@ -2699,7 +2699,6 @@ input, select, textarea {
   border-radius: 8px;
   display: block;
 }
-
 /* Content Column */
 .spotlight .content {
   order: 2;
@@ -3979,6 +3978,7 @@ input, select, textarea {
 	body.is-mobile.landing #footer {
 		background-color: #1d242a;
 	}
+
 
 
 
