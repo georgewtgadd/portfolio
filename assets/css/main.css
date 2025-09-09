@@ -2664,14 +2664,14 @@ input, select, textarea {
 	/* Spotlight Sections */
 .spotlight {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   flex-wrap: wrap;
   padding-top: 3rem;
   padding-bottom: 3rem;
   box-sizing: border-box;
 }
 
-/* Image Column */
+/* Image Column (screenshots, photos, video wrapper) */
 .spotlight .image {
   order: 1;
   width: 40%;
@@ -2683,12 +2683,23 @@ input, select, textarea {
   box-sizing: border-box;
 }
 
-/* Video & Screenshot Wrappers */
+/* Screenshots and normal images */
+.spotlight .image img,
+.screenshot-container img {
+  width: 100%;
+  max-width: 600px; /* optional to prevent huge images */
+  height: auto;
+  border-radius: 8px;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Video Container */
 .video-container {
   width: 100%;
   max-width: 800px;       /* optional max width */
-  margin: 0 auto;         /* centers video */
-  aspect-ratio: 16 / 9;   /* preserves 16:9 ratio automatically */
+  margin: 2rem auto;      /* vertical spacing + center */
+  aspect-ratio: 16 / 9;   /* keeps proper video height */
 }
 
 .video-container iframe {
@@ -2738,6 +2749,8 @@ input, select, textarea {
     padding-right: 2rem;
   }
 
+  .spotlight br { display: none; }
+
   .spotlight .image,
   .video-container,
   .screenshot-container {
@@ -2763,6 +2776,7 @@ input, select, textarea {
     padding: 3em 2em 1em 2em;
   }
 }
+
 
 
 /* Wrapper */
@@ -3977,6 +3991,7 @@ input, select, textarea {
 	body.is-mobile.landing #footer {
 		background-color: #1d242a;
 	}
+
 
 
 
