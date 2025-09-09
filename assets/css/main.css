@@ -2673,7 +2673,7 @@ input, select, textarea {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  padding: 0 2.5rem 0 0; /* right padding by default */
+  padding: 0 2.5rem 0 0; /* default right padding */
   box-sizing: border-box;
 }
 
@@ -2692,6 +2692,7 @@ input, select, textarea {
   overflow: hidden;
 }
 
+/* Fix videos inside video-wrapper */
 .spotlight .image .video-wrapper iframe {
   position: absolute;
   top: 0;
@@ -2701,6 +2702,13 @@ input, select, textarea {
   border-radius: 8px;
 }
 
+/* Web design screenshots spacing */
+.spotlight .image .screenshot-thumb {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Content section */
 .spotlight .content {
   order: 2;
   width: 60%;
@@ -2733,17 +2741,15 @@ input, select, textarea {
 
 /* Smaller screens */
 @media screen and (max-width: 980px) {
-  .spotlight {
-    display: block;
-  }
+  .spotlight { display: block; }
   .spotlight br { display: none; }
 
-  /* add padding on both sides for mobile */
+  /* Padding for images and videos on mobile */
   .spotlight .image,
   .spotlight .image .video-wrapper,
   .spotlight .image .screenshot-thumb {
     width: 100%;
-    padding: 0 2.5rem;
+    padding: 0 2.5rem; /* horizontal padding */
     box-sizing: border-box;
   }
 
@@ -2757,8 +2763,12 @@ input, select, textarea {
 
 /* Mobile */
 @media screen and (max-width: 736px) {
-  .spotlight .content {
-    padding: 3em 2em 1em 2em;
+  .spotlight .content { padding: 3em 2em 1em 2em; }
+
+  /* Optional: reduce vertical margins on tiny screens */
+  .spotlight .image .screenshot-thumb {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
   }
 }
 
@@ -3975,6 +3985,7 @@ input, select, textarea {
 	body.is-mobile.landing #footer {
 		background-color: #1d242a;
 	}
+
 
 
 
