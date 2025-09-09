@@ -2857,8 +2857,8 @@ p {
 		}
 
 		.wrapper.style1 {
-			background-color: #21b2a6;
-			color: #c8ece9;
+			background-color: ##005b57;
+			color: #ffffff;
 		}
 
 			.wrapper.style1 strong, .wrapper.style1 b {
@@ -4037,6 +4037,7 @@ p {
 	body.is-mobile.landing #footer {
 		background-color: #1d242a;
 	}
+
 
 
 
