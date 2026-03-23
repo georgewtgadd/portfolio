@@ -34,14 +34,10 @@ const videos = [
   title: 'Carol Case Study',
   desc: 'Students were struggling to engage with our problem-based learning scenarios because the hired actors lacked authenticity. To improve student buy-in for the Virtual Placement platform, we shifted from scripted actors to a real-world volunteer, filming "Carol," a colleague\'s mother with lived experience of COPD. This authentic approach significantly boosted student immersion, making the module an immediate hit and even leading to Carol making a guest appearance during a live lecture.'
 },
-  {
-    src: 'https://www.youtube.com/watch?v=11i9mJ_l7mI&feature=youtu.be',
+ {
+    src: 'https://youtu.be/11i9mJ_l7mI',
     title: 'An Introduction to Grounded Theory',
-    desc: `In 2018, I was approached by a Midwifery lecturer about creating a blended learning package on 'An Introduction to Grounded Theory' — a subject often seen as quite dry and difficult. It coincided with the HELM team recently receiving a VideoScribe licence, software used to produce whiteboard animations with royalty-free clipart.
-
-Upon receiving a script, an animated self-directed learning package was created to provide an overview of grounded theory with the aim of improving student engagement. I recorded the voiceover narration with the academic and processed it in Adobe Audition, then created the VideoScribe animation and brought it into Adobe Premiere to synchronise narration and timings.
-
-Alongside the video, students can download a transcript or the audio file alone, supporting those who prefer a podcast-style format — allowing learners to adapt to their preferred learning style. Feedback has been positive. While VideoScribe is an effective tool, it provides a fairly limited clipart library; it would be particularly well-suited for annotating diagrams, especially if users could import their own images.`
+    desc: 'Grounded Theory is often perceived as a dry and complex subject, making it difficult for students to engage with the material. To reduce cognitive load, I designed a self-directed whiteboard animation that leverages Mayer’s Cognitive Theory of Multimedia Learning, using synchronized visual scaffolding and audio narration to clarify abstract concepts. Furthermore, by applying Universal Design for Learning (UDL) principles, I provided multimodal delivery options—including the video, an audio-only podcast, and a text transcript—empowering learners to choose the format that best aligns with their accessibility needs and learning environment.'
   },
   {
     src: 'https://youtu.be/BGiv_NG55PY',
