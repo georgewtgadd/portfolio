@@ -27,38 +27,23 @@ document.getElementById('imgModal').onclick = e => {
   if (e.target.id === 'imgModal') document.getElementById('imgModal').classList.remove('open');
 };
 
-/* ── VIDEO CAROUSEL ── */
+/* ── VIDEO DATA ── */
 const videos = [
   {
-    type: 'youtube',
-    id: '2kM35XMMiPk',
-    title: 'Problem-Based Learning Scenario',
-    desc: 'A problem-based learning scenario developed for first-year physiotherapy students, embedded within Moodle as part of a redesigned undergraduate curriculum.'
-  },
-  {
-    type: 'youtube',
-    id: 'JUulBTfO1Fc',
-    title: 'Learning Short – Microlearning',
-    desc: 'A short-form learning video optimised for YouTube and social media, applying microlearning principles for accessible, on-the-go content.'
-  },
-  {
-    type: 'mp4',
     src: 'videos/Carol.mp4',
     title: 'Carol Case Study',
     desc: 'A case study video produced as part of the Virtual Placement platform, introducing students to a patient scenario to support practice-oriented learning.'
   },
   {
-    type: 'mp4',
     src: 'videos/Grounded_Theory.mp4',
-    title: 'Grounded Theory',
+    title: 'An Introduction to Grounded Theory',
     desc: `In 2018, I was approached by a Midwifery lecturer about creating a blended learning package on 'An Introduction to Grounded Theory' — a subject often seen as quite dry and difficult. It coincided with the HELM team recently receiving a VideoScribe licence, software used to produce whiteboard animations with royalty-free clipart.
 
-Upon receiving a script, an animated self-directed learning package was created to provide an overview of grounded theory for the students, with the aim of improving engagement. I recorded the voiceover narration with the academic and processed it in Adobe Audition, then created the VideoScribe animation and brought it into Adobe Premiere to synchronise narration and timings.
+Upon receiving a script, an animated self-directed learning package was created to provide an overview of grounded theory with the aim of improving student engagement. I recorded the voiceover narration with the academic and processed it in Adobe Audition, then created the VideoScribe animation and brought it into Adobe Premiere to synchronise narration and timings.
 
-Alongside the video, students can download a transcript or the audio file alone, supporting those who prefer a podcast-style format — allowing learners to adapt to their preferred learning style. Feedback from students has been positive. While VideoScribe is an effective tool, it provides a fairly limited clipart library; it would be particularly strong for annotating diagrams, especially if users could import their own images.`
+Alongside the video, students can download a transcript or the audio file alone, supporting those who prefer a podcast-style format — allowing learners to adapt to their preferred learning style. Feedback has been positive. While VideoScribe is an effective tool, it provides a fairly limited clipart library; it would be particularly well-suited for annotating diagrams, especially if users could import their own images.`
   },
   {
-    type: 'mp4',
     src: 'videos/setting_scene.mp4',
     title: 'Ideal Ward Round Introduction',
     desc: `Within mental health care, ward rounds play an important and potentially very beneficial role in shaping a person's care — making sure that everyone concerned, including the person themselves, has a voice and is listened to. Ward rounds should be a way of ensuring that care is appropriate, dynamic and safe.
@@ -67,22 +52,60 @@ Here we meet Emma just before a ward round that is going to discuss her care. Wh
   }
 ];
 
+/* ── VIDEO CAROUSEL ── */
 const track = document.getElementById('carouselTrack');
 const dotsWrap = document.getElementById('carouselDots');
 
-// Build cards
+/**
+ * Generate a thumbnail from an mp4 by loading it into a hidden video,
+ * seeking to a frame, then drawing to a canvas.
+ */
+function generateThumbnail(src, canvas) {
+  return new Promise(resolve => {
+    const vid = document.createElement('video');
+    vid.src = src;
+    vid.crossOrigin = 'anonymous';
+    vid.muted = true;
+    vid.preload = 'metadata';
+    vid.addEventListener('loadedmetadata', () => {
+      // Seek to 10% of duration, or 1s if short
+      vid.currentTime = Math.min(1, vid.duration * 0.1);
+    });
+    vid.addEventListener('seeked', () => {
+      try {
+        canvas.width = vid.videoWidth || 640;
+        canvas.height = vid.videoHeight || 360;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(vid, 0, 0, canvas.width, canvas.height);
+        canvas.style.display = 'block';
+        // Hide fallback
+        const fallback = canvas.parentElement.querySelector('.carousel-thumb-fallback');
+        if (fallback) fallback.style.display = 'none';
+      } catch (e) {
+        // CORS or decode error — leave fallback visible
+      }
+      resolve();
+    });
+    vid.addEventListener('error', () => resolve()); // fail gracefully
+    vid.load();
+  });
+}
+
 videos.forEach((v, i) => {
   const card = document.createElement('div');
   card.className = 'carousel-card';
   card.dataset.index = i;
 
-  const thumbHtml = v.type === 'youtube'
-    ? `<img src="https://img.youtube.com/vi/${v.id}/maxresdefault.jpg" alt="${v.title}" loading="lazy" />`
-    : `<video src="${v.src}" preload="none" muted></video>`;
+  // Extract filename for a nicer fallback label
+  const filename = v.src.split('/').pop().replace(/\.[^.]+$/, '').replace(/_/g, ' ');
 
   card.innerHTML = `
     <div class="carousel-thumb">
-      ${thumbHtml}
+      <div class="carousel-thumb-fallback">
+        <i class="fas fa-film"></i>
+        <span>${filename}</span>
+      </div>
+      <canvas style="display:none;width:100%;height:100%;object-fit:cover;"></canvas>
       <div class="carousel-play"><i class="fas fa-play"></i></div>
     </div>
     <div class="carousel-info">
@@ -92,6 +115,10 @@ videos.forEach((v, i) => {
 
   card.addEventListener('click', () => openVideoModal(i));
   track.appendChild(card);
+
+  // Generate thumbnail asynchronously
+  const canvas = card.querySelector('canvas');
+  generateThumbnail(v.src, canvas);
 
   // Dot
   const dot = document.createElement('button');
@@ -120,14 +147,12 @@ track.addEventListener('scroll', () => {
 });
 
 document.getElementById('carouselPrev').addEventListener('click', () => {
-  const cards = track.querySelectorAll('.carousel-card');
   const dots = dotsWrap.querySelectorAll('.carousel-dot');
   let active = [...dots].findIndex(d => d.classList.contains('active'));
   scrollToCard(Math.max(0, active - 1));
 });
 
 document.getElementById('carouselNext').addEventListener('click', () => {
-  const cards = track.querySelectorAll('.carousel-card');
   const dots = dotsWrap.querySelectorAll('.carousel-dot');
   let active = [...dots].findIndex(d => d.classList.contains('active'));
   scrollToCard(Math.min(videos.length - 1, active + 1));
@@ -137,28 +162,23 @@ document.getElementById('carouselNext').addEventListener('click', () => {
 function openVideoModal(index) {
   const v = videos[index];
   const modal = document.getElementById('videoModal');
-  const playerWrap = document.getElementById('vmodalPlayer');
-  const titleEl = document.getElementById('vmodalTitle');
-  const descEl = document.getElementById('vmodalDesc');
 
-  titleEl.textContent = v.title;
-  // Format description — newlines become paragraphs
-  descEl.innerHTML = v.desc
+  document.getElementById('vmodalTitle').textContent = v.title;
+  document.getElementById('vmodalDesc').innerHTML = v.desc
     ? v.desc.split('\n\n').map(p => `<p>${p.trim()}</p>`).join('')
     : '<p style="color:var(--muted);font-style:italic">No additional notes for this video.</p>';
 
-  if (v.type === 'youtube') {
-    playerWrap.innerHTML = `<div class="vmodal-embed"><iframe src="https://www.youtube.com/embed/${v.id}?autoplay=1" title="${v.title}" allowfullscreen allow="autoplay"></iframe></div>`;
-  } else {
-    playerWrap.innerHTML = `<div class="vmodal-embed"><video src="${v.src}" controls autoplay style="position:absolute;inset:0;width:100%;height:100%;"></video></div>`;
-  }
+  document.getElementById('vmodalPlayer').innerHTML =
+    `<div class="vmodal-embed"><video src="${v.src}" controls autoplay></video></div>`;
 
   modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
 }
 
 function closeVideoModal() {
   document.getElementById('videoModal').classList.remove('open');
   document.getElementById('vmodalPlayer').innerHTML = '';
+  document.body.style.overflow = '';
 }
 
 document.getElementById('vmodalClose').addEventListener('click', closeVideoModal);
@@ -170,20 +190,19 @@ document.getElementById('videoModal').addEventListener('click', e => {
 function openProjectModal(id) {
   const data = projectData[id];
   if (!data) return;
-  const modal = document.getElementById('projectModal');
 
-  // Images
   const mediaEl = document.getElementById('pmodalMedia');
-  mediaEl.innerHTML = data.images.map(src =>
-    `<img src="${src.src}" alt="${src.alt}" onclick="openImgModal('${src.src}','${src.alt}')" />`
+  mediaEl.innerHTML = data.images.map(img =>
+    `<img src="${img.src}" alt="${img.alt}" onclick="openImgModal('${img.src}','${img.alt}')" />`
   ).join('');
 
   document.getElementById('pmodalTag').textContent = data.tag;
   document.getElementById('pmodalTitle').textContent = data.title;
   document.getElementById('pmodalBody').innerHTML = data.body;
-  document.getElementById('pmodalTech').innerHTML = data.tech.map(t => `<span class="tech-pill">${t}</span>`).join('');
+  document.getElementById('pmodalTech').innerHTML =
+    data.tech.map(t => `<span class="tech-pill">${t}</span>`).join('');
 
-  modal.classList.add('open');
+  document.getElementById('projectModal').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
 
@@ -203,8 +222,8 @@ const projectData = {
     tag: 'LMS Platform',
     title: 'Virtual Placement',
     images: [
-      { src: 'vp1.png', alt: 'Virtual Placement – Landing Page' },
-      { src: 'vp2.png', alt: 'Virtual Placement – AI Chat Interface' }
+      { src: 'images/vp1.png', alt: 'Virtual Placement – Landing Page' },
+      { src: 'images/vp2.png', alt: 'Virtual Placement – AI Chat Interface' }
     ],
     body: `<p>Students on a wide range of courses, particularly in healthcare, are required to complete placement learning. Placement experiences are becoming increasingly difficult to source and more expensive to resource. To address this, a bespoke "Virtual Placement" (VP) platform was designed to provide authentic, practice-oriented experiences. Students are introduced to their practice supervisor, Krish, who guides them along their learning journey, including virtual home visits to a patient, Lionel.</p>
     <p>A key feature is the integration of the OpenAI API to power an AI-driven practice assessor, available to students 24/7 — providing on-demand guidance at any point in their learning journey. The chatbot was deliberately scoped and restricted to remain relevant only to the subject matter of the placement, ensuring a focused and educationally sound experience.</p>
@@ -212,11 +231,22 @@ const projectData = {
     <p>Rollout was carefully managed to ensure genuine curriculum integration. The platform was embedded directly into Year 1 lectures, with sessions delivered in person. Completion was made compulsory prior to students attending their first real-world placement. This approach has been rolled out across four student cohorts (400+ users). Accessibility audits using WAVE, axe DevTools, and Silktide ensure compliance for diverse learners.</p>`,
     tech: ['PHP', 'HTML5', 'JavaScript', 'OpenAI API', 'MySQL', 'OAuth 2.0', 'Apache ECharts', 'Bootstrap']
   },
+  telehealth: {
+    tag: 'Blended Learning · LMS Embedded',
+    title: 'Telehealth Learning Resource',
+    images: [
+      { src: 'images/telehealth.png', alt: 'Telehealth learning resource' }
+    ],
+    body: `<p>Developed during the COVID-19 lockdown period in response to rapidly evolving healthcare practices, this blended learning resource was built to support clinical staff and students in understanding and adapting to telehealth consultations.</p>
+    <p>Built as a Bootstrap website, the resource incorporated embedded SCORM packages and immersive 360° tour experiences, allowing learners to explore virtual clinical environments without leaving the platform. It was integrated directly into the University's LMS, making it accessible within the existing curriculum structure.</p>
+    <p>This project served as an important precursor to the Virtual Placement platform — establishing many of the same design principles around experiential, practice-oriented digital learning, and demonstrating the potential for immersive technology in healthcare education at scale.</p>`,
+    tech: ['Bootstrap', 'HTML5', 'CSS', 'JavaScript', 'SCORM', '360° Tours', 'LMS Integration']
+  },
   adhd: {
     tag: 'Multilingual RLO',
     title: 'ADHD Translation Resources',
     images: [
-      { src: 'brain.png', alt: 'ADHD Translation Resource illustration' }
+      { src: 'images/brain.png', alt: 'ADHD Translation Resource illustration' }
     ],
     body: `<p>This project focused on equipping healthcare professionals and the public with accessible information on assessing and recognising ADHD in both children and adults. The resources are endorsed by the Royal College of General Practitioners.</p>
     <p>Split into <em>Understanding ADHD</em> and <em>The Role of the General Practitioner in ADHD Diagnosis and Management</em>, both were translated from English into French, Spanish, and German. This involved close collaboration with stakeholders and professional translators, alongside accessibility audits using WAVE, Silktide, and axe DevTools to ensure content is clear, inclusive, and usable for diverse audiences.</p>`,
