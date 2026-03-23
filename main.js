@@ -35,7 +35,7 @@ const videos = [
     desc: 'A case study video produced as part of the Virtual Placement platform, introducing students to a patient scenario to support practice-oriented learning.'
   },
   {
-    src: 'videos/Grounded_Theory.mp4',
+    src: 'https://www.youtube.com/watch?v=11i9mJ_l7mI&feature=youtu.be',
     title: 'An Introduction to Grounded Theory',
     desc: `In 2018, I was approached by a Midwifery lecturer about creating a blended learning package on 'An Introduction to Grounded Theory' — a subject often seen as quite dry and difficult. It coincided with the HELM team recently receiving a VideoScribe licence, software used to produce whiteboard animations with royalty-free clipart.
 
@@ -44,7 +44,7 @@ Upon receiving a script, an animated self-directed learning package was created 
 Alongside the video, students can download a transcript or the audio file alone, supporting those who prefer a podcast-style format — allowing learners to adapt to their preferred learning style. Feedback has been positive. While VideoScribe is an effective tool, it provides a fairly limited clipart library; it would be particularly well-suited for annotating diagrams, especially if users could import their own images.`
   },
   {
-    src: 'videos/setting_scene.mp4',
+    src: 'https://youtu.be/BGiv_NG55PY',
     title: 'Ideal Ward Round Introduction',
     desc: `Within mental health care, ward rounds play an important and potentially very beneficial role in shaping a person's care — making sure that everyone concerned, including the person themselves, has a voice and is listened to. Ward rounds should be a way of ensuring that care is appropriate, dynamic and safe.
 
