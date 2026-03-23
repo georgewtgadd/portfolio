@@ -29,12 +29,12 @@ document.getElementById('imgModal').onclick = e => {
 
 /* ── VIDEO DATA ── */
 const videos = [
-{
-  src: 'https://youtu.be/dYHADdi7Nys',
-  title: 'Carol Case Study',
-  desc: 'Students were struggling to engage with our problem-based learning scenarios because the hired actors lacked authenticity. To improve student buy-in for the Virtual Placement platform, we shifted from scripted actors to a real-world volunteer, filming "Carol," a colleague\'s mother with lived experience of COPD. This authentic approach significantly boosted student immersion, making the module an immediate hit and even leading to Carol making a guest appearance during a live lecture.'
-},
- {
+  {
+    src: 'https://youtu.be/dYHADdi7Nys',
+    title: 'Carol Case Study',
+    desc: 'Students were struggling to engage with our problem-based learning scenarios because the hired actors lacked authenticity. To improve student buy-in for the Virtual Placement platform, we shifted from scripted actors to a real-world volunteer, filming "Carol," a colleague\'s mother with lived experience of COPD. This authentic approach significantly boosted student immersion, making the module an immediate hit and even leading to Carol making a guest appearance during a live lecture.'
+  },
+  {
     src: 'https://www.youtube.com/watch?v=GxNuMgE4-M4',
     title: 'An Introduction to Grounded Theory',
     desc: 'Grounded Theory is often perceived as a dry and complex subject, making it difficult for students to engage with the material. To reduce cognitive load, I designed a self-directed whiteboard animation that leverages Mayer’s Cognitive Theory of Multimedia Learning, using synchronized visual scaffolding and audio narration to clarify abstract concepts. Furthermore, by applying Universal Design for Learning (UDL) principles, I provided multimodal delivery options—including the video, an audio-only podcast, and a text transcript—empowering learners to choose the format that best aligns with their accessibility needs and learning environment.'
@@ -42,30 +42,19 @@ const videos = [
   {
     src: 'https://youtu.be/BGiv_NG55PY',
     title: 'Ideal Ward Round Introduction',
-    desc: `Within mental health care, ward rounds play an important and potentially very beneficial role in shaping a person's care — making sure that everyone concerned, including the person themselves, has a voice and is listened to. Ward rounds should be a way of ensuring that care is appropriate, dynamic and safe.
-
-Here we meet Emma just before a ward round that is going to discuss her care. Whilst Emma's story is fictitious, you will also hear thoughts from individuals who have been involved in ward round situations in different capacities.`
-  },
-   {
-    src: 'https://youtube.com/shorts/Ehu8cfoCF2A?si=NG-HmbidYj6aqIXs',
-    title: 'Clinical Skills Shorts',
-    desc: 'Grounded Theory is often perceived as a dry and complex subject, making it difficult for students to engage with the material. To reduce cognitive load, I designed a self-directed whiteboard animation that leverages Mayer’s Cognitive Theory of Multimedia Learning, using synchronized visual scaffolding and audio narration to clarify abstract concepts. Furthermore, by applying Universal Design for Learning (UDL) principles, I provided multimodal delivery options—including the video, an audio-only podcast, and a text transcript—empowering learners to choose the format that best aligns with their accessibility needs and learning environment.'
+    desc: `Within mental health care, ward rounds play an important and potentially very beneficial role in shaping a person's care — making sure that everyone concerned, including the person themselves, has a voice and is listened to. Ward rounds should be a way of ensuring that care is appropriate, dynamic and safe.\n\nHere we meet Emma just before a ward round that is going to discuss her care. Whilst Emma's story is fictitious, you will also hear thoughts from individuals who have been involved in ward round situations in different capacities.`
   },
   {
     src: 'https://youtube.com/shorts/Ehu8cfoCF2A?si=NG-HmbidYj6aqIXs',
     title: 'Clinical Skills Shorts',
     desc: 'Applying microlearning principles, I designed a series of "learning shorts" optimized for mobile platforms and social media. These bite-sized videos deliver focused, accessible content for on-the-go learning, effectively reinforcing key clinical skills and complementing longer-form curriculum resources to match modern student consumption habits.'
-  },
+  }
 ];
 
 /* ── VIDEO CAROUSEL ── */
 const track = document.getElementById('carouselTrack');
 const dotsWrap = document.getElementById('carouselDots');
 
-/**
- * Generate a thumbnail from an mp4 by loading it into a hidden video,
- * seeking to a frame, then drawing to a canvas.
- */
 function generateThumbnail(src, canvas) {
   return new Promise(resolve => {
     const vid = document.createElement('video');
@@ -74,7 +63,6 @@ function generateThumbnail(src, canvas) {
     vid.muted = true;
     vid.preload = 'metadata';
     vid.addEventListener('loadedmetadata', () => {
-      // Seek to 10% of duration, or 1s if short
       vid.currentTime = Math.min(1, vid.duration * 0.1);
     });
     vid.addEventListener('seeked', () => {
@@ -84,15 +72,12 @@ function generateThumbnail(src, canvas) {
         const ctx = canvas.getContext('2d');
         ctx.drawImage(vid, 0, 0, canvas.width, canvas.height);
         canvas.style.display = 'block';
-        // Hide fallback
         const fallback = canvas.parentElement.querySelector('.carousel-thumb-fallback');
         if (fallback) fallback.style.display = 'none';
-      } catch (e) {
-        // CORS or decode error — leave fallback visible
-      }
+      } catch (e) { }
       resolve();
     });
-    vid.addEventListener('error', () => resolve()); // fail gracefully
+    vid.addEventListener('error', () => resolve());
     vid.load();
   });
 }
@@ -102,20 +87,17 @@ videos.forEach((v, i) => {
   card.className = 'carousel-card';
   card.dataset.index = i;
 
-  // Extract filename for a nicer fallback label
   const filename = v.src.split('/').pop().replace(/\.[^.]+$/, '').replace(/_/g, ' ');
-
-  // Check if it's a YouTube video
   const isYouTube = v.src.includes('youtu.be') || v.src.includes('youtube.com');
   let thumbHtml = '';
 
   if (isYouTube) {
-    // Grab the YouTube ID and use the official YouTube thumbnail URL
-    const videoId = v.src.split('/').pop();
+    // FIXED: Robust YouTube ID extraction
+    const match = v.src.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|shorts\/))([^&?]+)/);
+    const videoId = match ? match[1] : '';
     const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
     thumbHtml = `<img src="${thumbnailUrl}" style="width:100%;height:100%;object-fit:cover;" alt="${v.title} thumbnail">`;
   } else {
-    // Canvas setup for .mp4 files
     thumbHtml = `
       <div class="carousel-thumb-fallback">
         <i class="fas fa-film"></i>
@@ -138,13 +120,11 @@ videos.forEach((v, i) => {
   card.addEventListener('click', () => openVideoModal(i));
   track.appendChild(card);
 
-  // Only run the canvas thumbnail generator if it's NOT a YouTube video
   if (!isYouTube) {
     const canvas = card.querySelector('canvas');
     generateThumbnail(v.src, canvas);
   }
 
-  // Dot
   const dot = document.createElement('button');
   dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
   dot.setAttribute('aria-label', `Go to video ${i + 1}`);
@@ -158,7 +138,6 @@ function scrollToCard(i) {
   track.scrollTo({ left: cards[i].offsetLeft - track.offsetLeft, behavior: 'smooth' });
 }
 
-// Update active dot on scroll
 track.addEventListener('scroll', () => {
   const cards = track.querySelectorAll('.carousel-card');
   const dots = dotsWrap.querySelectorAll('.carousel-dot');
@@ -192,10 +171,11 @@ function openVideoModal(index) {
     ? v.desc.split('\n\n').map(p => `<p>${p.trim()}</p>`).join('')
     : '<p style="color:var(--muted);font-style:italic">No additional notes for this video.</p>';
 
-  // Check if the source is a YouTube URL
   if (v.src.includes('youtu.be') || v.src.includes('youtube.com')) {
-    // Extract the video ID from the youtu.be link
-    const videoId = v.src.split('/').pop(); 
+    // FIXED: Robust YouTube ID extraction for the embed
+    const match = v.src.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|shorts\/))([^&?]+)/);
+    const videoId = match ? match[1] : '';
+    
     document.getElementById('vmodalPlayer').innerHTML = `
       <div class="vmodal-embed" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
         <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
@@ -206,7 +186,6 @@ function openVideoModal(index) {
         </iframe>
       </div>`;
   } else {
-    // Standard HTML5 video for .mp4 files
     document.getElementById('vmodalPlayer').innerHTML =
       `<div class="vmodal-embed"><video style="width:100%;" src="${v.src}" controls autoplay></video></div>`;
   }
