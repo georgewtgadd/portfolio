@@ -29,11 +29,11 @@ document.getElementById('imgModal').onclick = e => {
 
 /* ── VIDEO DATA ── */
 const videos = [
-  {
-    src: 'https://youtu.be/dYHADdi7Nys',
-    title: 'Carol Case Study',
-    desc: 'A case study video produced as part of the Virtual Placement platform, introducing students to a patient scenario to support practice-oriented learning.'
-  },
+{
+  src: 'https://youtu.be/dYHADdi7Nys',
+  title: 'Carol Case Study',
+  desc: 'Students were struggling to engage with our problem-based learning scenarios because the hired actors lacked authenticity. To improve student buy-in for the Virtual Placement platform, we shifted from scripted actors to a real-world volunteer, filming "Carol," a colleague\'s mother with lived experience of COPD. This authentic approach significantly boosted student immersion, making the module an immediate hit and even leading to Carol making a guest appearance during a live lecture.'
+}
   {
     src: 'https://www.youtube.com/watch?v=11i9mJ_l7mI&feature=youtu.be',
     title: 'An Introduction to Grounded Theory',
