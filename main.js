@@ -35,7 +35,7 @@ const videos = [
   desc: 'Students were struggling to engage with our problem-based learning scenarios because the hired actors lacked authenticity. To improve student buy-in for the Virtual Placement platform, we shifted from scripted actors to a real-world volunteer, filming "Carol," a colleague\'s mother with lived experience of COPD. This authentic approach significantly boosted student immersion, making the module an immediate hit and even leading to Carol making a guest appearance during a live lecture.'
 },
  {
-    src: 'https://youtu.be/11i9mJ_l7mI',
+    src: 'https://www.youtube.com/watch?v=GxNuMgE4-M4',
     title: 'An Introduction to Grounded Theory',
     desc: 'Grounded Theory is often perceived as a dry and complex subject, making it difficult for students to engage with the material. To reduce cognitive load, I designed a self-directed whiteboard animation that leverages Mayer’s Cognitive Theory of Multimedia Learning, using synchronized visual scaffolding and audio narration to clarify abstract concepts. Furthermore, by applying Universal Design for Learning (UDL) principles, I provided multimodal delivery options—including the video, an audio-only podcast, and a text transcript—empowering learners to choose the format that best aligns with their accessibility needs and learning environment.'
   },
@@ -45,7 +45,17 @@ const videos = [
     desc: `Within mental health care, ward rounds play an important and potentially very beneficial role in shaping a person's care — making sure that everyone concerned, including the person themselves, has a voice and is listened to. Ward rounds should be a way of ensuring that care is appropriate, dynamic and safe.
 
 Here we meet Emma just before a ward round that is going to discuss her care. Whilst Emma's story is fictitious, you will also hear thoughts from individuals who have been involved in ward round situations in different capacities.`
-  }
+  },
+   {
+    src: 'https://youtube.com/shorts/Ehu8cfoCF2A?si=NG-HmbidYj6aqIXs',
+    title: 'Clinical Skills Shorts',
+    desc: 'Grounded Theory is often perceived as a dry and complex subject, making it difficult for students to engage with the material. To reduce cognitive load, I designed a self-directed whiteboard animation that leverages Mayer’s Cognitive Theory of Multimedia Learning, using synchronized visual scaffolding and audio narration to clarify abstract concepts. Furthermore, by applying Universal Design for Learning (UDL) principles, I provided multimodal delivery options—including the video, an audio-only podcast, and a text transcript—empowering learners to choose the format that best aligns with their accessibility needs and learning environment.'
+  },
+  {
+    src: 'https://youtube.com/shorts/Ehu8cfoCF2A?si=NG-HmbidYj6aqIXs',
+    title: 'Clinical Skills Shorts',
+    desc: 'Applying microlearning principles, I designed a series of "learning shorts" optimized for mobile platforms and social media. These bite-sized videos deliver focused, accessible content for on-the-go learning, effectively reinforcing key clinical skills and complementing longer-form curriculum resources to match modern student consumption habits.'
+  },
 ];
 
 /* ── VIDEO CAROUSEL ── */
