@@ -275,7 +275,7 @@ const projectData = {
     tag: 'Blended Learning · LMS Embedded',
     title: 'Telehealth Learning Resource',
     images: [
-      { src: 'images/telehealth.png', alt: 'Telehealth learning resource' }
+      { src: 'images/360.png', alt: 'Telehealth 360 image' }
     ],
     body: `<p>Developed during the COVID-19 lockdown period in response to rapidly evolving healthcare practices, this blended learning resource was built to support clinical staff and students in understanding and adapting to telehealth consultations.</p>
     <p>Built as a Bootstrap website, the resource incorporated embedded SCORM packages and immersive 360° tour experiences, allowing learners to explore virtual clinical environments without leaving the platform. It was integrated directly into the University's LMS, making it accessible within the existing curriculum structure.</p>
