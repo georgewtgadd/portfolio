@@ -1,23 +1,24 @@
-/* Scroll reveal */
+/* ── SCROLL REVEAL ── */
 const ro = new IntersectionObserver(es => {
-  es.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); }
-  });
+  es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); } });
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(r => ro.observe(r));
 
-/* Project card toggle */
-function toggleCard(header) {
-  const body = header.nextElementSibling;
-  const toggle = header.querySelector('.project-toggle');
-  body.classList.toggle('open');
-  toggle.classList.toggle('open');
-}
+/* ── NAV COMPACT ── */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () =>
+  nav.style.padding = scrollY > 60 ? '0.7rem 3rem' : '1.2rem 3rem'
+);
 
-/* Image modal */
+/* ── SCROLL TOP ── */
+const sb = document.getElementById('scrollTop');
+window.addEventListener('scroll', () => sb.classList.toggle('visible', scrollY > 400));
+sb.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+
+/* ── IMAGE MODAL ── */
 function openImgModal(src, alt) {
   document.getElementById('modalImg').src = src;
-  document.getElementById('modalImg').alt = alt;
+  document.getElementById('modalImg').alt = alt || '';
   document.getElementById('imgModal').classList.add('open');
 }
 document.getElementById('modalClose').onclick = () =>
@@ -26,31 +27,199 @@ document.getElementById('imgModal').onclick = e => {
   if (e.target.id === 'imgModal') document.getElementById('imgModal').classList.remove('open');
 };
 
-/* Video modal */
-document.querySelectorAll('.video-thumb').forEach(t => {
-  t.onclick = () => {
-    document.getElementById('videoIframe').src =
-      'https://www.youtube.com/embed/' + t.dataset.videoid + '?autoplay=1';
-    document.getElementById('videoModal').classList.add('open');
-  };
+/* ── VIDEO CAROUSEL ── */
+const videos = [
+  {
+    type: 'youtube',
+    id: '2kM35XMMiPk',
+    title: 'Problem-Based Learning Scenario',
+    desc: 'A problem-based learning scenario developed for first-year physiotherapy students, embedded within Moodle as part of a redesigned undergraduate curriculum.'
+  },
+  {
+    type: 'youtube',
+    id: 'JUulBTfO1Fc',
+    title: 'Learning Short – Microlearning',
+    desc: 'A short-form learning video optimised for YouTube and social media, applying microlearning principles for accessible, on-the-go content.'
+  },
+  {
+    type: 'mp4',
+    src: 'videos/Carol.mp4',
+    title: 'Carol Case Study',
+    desc: 'A case study video produced as part of the Virtual Placement platform, introducing students to a patient scenario to support practice-oriented learning.'
+  },
+  {
+    type: 'mp4',
+    src: 'videos/Grounded_Theory.mp4',
+    title: 'Grounded Theory',
+    desc: `In 2018, I was approached by a Midwifery lecturer about creating a blended learning package on 'An Introduction to Grounded Theory' — a subject often seen as quite dry and difficult. It coincided with the HELM team recently receiving a VideoScribe licence, software used to produce whiteboard animations with royalty-free clipart.
+
+Upon receiving a script, an animated self-directed learning package was created to provide an overview of grounded theory for the students, with the aim of improving engagement. I recorded the voiceover narration with the academic and processed it in Adobe Audition, then created the VideoScribe animation and brought it into Adobe Premiere to synchronise narration and timings.
+
+Alongside the video, students can download a transcript or the audio file alone, supporting those who prefer a podcast-style format — allowing learners to adapt to their preferred learning style. Feedback from students has been positive. While VideoScribe is an effective tool, it provides a fairly limited clipart library; it would be particularly strong for annotating diagrams, especially if users could import their own images.`
+  },
+  {
+    type: 'mp4',
+    src: 'videos/setting_scene.mp4',
+    title: 'Ideal Ward Round Introduction',
+    desc: `Within mental health care, ward rounds play an important and potentially very beneficial role in shaping a person's care — making sure that everyone concerned, including the person themselves, has a voice and is listened to. Ward rounds should be a way of ensuring that care is appropriate, dynamic and safe.
+
+Here we meet Emma just before a ward round that is going to discuss her care. Whilst Emma's story is fictitious, you will also hear thoughts from individuals who have been involved in ward round situations in different capacities.`
+  }
+];
+
+const track = document.getElementById('carouselTrack');
+const dotsWrap = document.getElementById('carouselDots');
+
+// Build cards
+videos.forEach((v, i) => {
+  const card = document.createElement('div');
+  card.className = 'carousel-card';
+  card.dataset.index = i;
+
+  const thumbHtml = v.type === 'youtube'
+    ? `<img src="https://img.youtube.com/vi/${v.id}/maxresdefault.jpg" alt="${v.title}" loading="lazy" />`
+    : `<video src="${v.src}" preload="none" muted></video>`;
+
+  card.innerHTML = `
+    <div class="carousel-thumb">
+      ${thumbHtml}
+      <div class="carousel-play"><i class="fas fa-play"></i></div>
+    </div>
+    <div class="carousel-info">
+      <div class="carousel-title">${v.title}</div>
+      <div class="carousel-hint"><i class="fas fa-expand-alt"></i> Click to watch &amp; learn more</div>
+    </div>`;
+
+  card.addEventListener('click', () => openVideoModal(i));
+  track.appendChild(card);
+
+  // Dot
+  const dot = document.createElement('button');
+  dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+  dot.setAttribute('aria-label', `Go to video ${i + 1}`);
+  dot.addEventListener('click', () => scrollToCard(i));
+  dotsWrap.appendChild(dot);
 });
 
-function closeVideo() {
-  document.getElementById('videoModal').classList.remove('open');
-  document.getElementById('videoIframe').src = '';
+function scrollToCard(i) {
+  const cards = track.querySelectorAll('.carousel-card');
+  if (!cards[i]) return;
+  track.scrollTo({ left: cards[i].offsetLeft - track.offsetLeft, behavior: 'smooth' });
 }
-document.getElementById('videoModalClose').onclick = closeVideo;
-document.getElementById('videoModal').onclick = e => {
-  if (e.target.id === 'videoModal') closeVideo();
+
+// Update active dot on scroll
+track.addEventListener('scroll', () => {
+  const cards = track.querySelectorAll('.carousel-card');
+  const dots = dotsWrap.querySelectorAll('.carousel-dot');
+  let closest = 0, minDist = Infinity;
+  cards.forEach((c, i) => {
+    const dist = Math.abs(c.getBoundingClientRect().left - track.getBoundingClientRect().left);
+    if (dist < minDist) { minDist = dist; closest = i; }
+  });
+  dots.forEach((d, i) => d.classList.toggle('active', i === closest));
+});
+
+document.getElementById('carouselPrev').addEventListener('click', () => {
+  const cards = track.querySelectorAll('.carousel-card');
+  const dots = dotsWrap.querySelectorAll('.carousel-dot');
+  let active = [...dots].findIndex(d => d.classList.contains('active'));
+  scrollToCard(Math.max(0, active - 1));
+});
+
+document.getElementById('carouselNext').addEventListener('click', () => {
+  const cards = track.querySelectorAll('.carousel-card');
+  const dots = dotsWrap.querySelectorAll('.carousel-dot');
+  let active = [...dots].findIndex(d => d.classList.contains('active'));
+  scrollToCard(Math.min(videos.length - 1, active + 1));
+});
+
+/* ── VIDEO MODAL ── */
+function openVideoModal(index) {
+  const v = videos[index];
+  const modal = document.getElementById('videoModal');
+  const playerWrap = document.getElementById('vmodalPlayer');
+  const titleEl = document.getElementById('vmodalTitle');
+  const descEl = document.getElementById('vmodalDesc');
+
+  titleEl.textContent = v.title;
+  // Format description — newlines become paragraphs
+  descEl.innerHTML = v.desc
+    ? v.desc.split('\n\n').map(p => `<p>${p.trim()}</p>`).join('')
+    : '<p style="color:var(--muted);font-style:italic">No additional notes for this video.</p>';
+
+  if (v.type === 'youtube') {
+    playerWrap.innerHTML = `<div class="vmodal-embed"><iframe src="https://www.youtube.com/embed/${v.id}?autoplay=1" title="${v.title}" allowfullscreen allow="autoplay"></iframe></div>`;
+  } else {
+    playerWrap.innerHTML = `<div class="vmodal-embed"><video src="${v.src}" controls autoplay style="position:absolute;inset:0;width:100%;height:100%;"></video></div>`;
+  }
+
+  modal.classList.add('open');
+}
+
+function closeVideoModal() {
+  document.getElementById('videoModal').classList.remove('open');
+  document.getElementById('vmodalPlayer').innerHTML = '';
+}
+
+document.getElementById('vmodalClose').addEventListener('click', closeVideoModal);
+document.getElementById('videoModal').addEventListener('click', e => {
+  if (e.target.id === 'videoModal') closeVideoModal();
+});
+
+/* ── PROJECT MODAL ── */
+function openProjectModal(id) {
+  const data = projectData[id];
+  if (!data) return;
+  const modal = document.getElementById('projectModal');
+
+  // Images
+  const mediaEl = document.getElementById('pmodalMedia');
+  mediaEl.innerHTML = data.images.map(src =>
+    `<img src="${src.src}" alt="${src.alt}" onclick="openImgModal('${src.src}','${src.alt}')" />`
+  ).join('');
+
+  document.getElementById('pmodalTag').textContent = data.tag;
+  document.getElementById('pmodalTitle').textContent = data.title;
+  document.getElementById('pmodalBody').innerHTML = data.body;
+  document.getElementById('pmodalTech').innerHTML = data.tech.map(t => `<span class="tech-pill">${t}</span>`).join('');
+
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeProjectModal() {
+  document.getElementById('projectModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('pmodalCloseBtn').addEventListener('click', closeProjectModal);
+document.getElementById('projectModal').addEventListener('click', e => {
+  if (e.target.id === 'projectModal') closeProjectModal();
+});
+
+/* ── PROJECT DATA ── */
+const projectData = {
+  vp: {
+    tag: 'LMS Platform',
+    title: 'Virtual Placement',
+    images: [
+      { src: 'vp1.png', alt: 'Virtual Placement – Landing Page' },
+      { src: 'vp2.png', alt: 'Virtual Placement – AI Chat Interface' }
+    ],
+    body: `<p>Students on a wide range of courses, particularly in healthcare, are required to complete placement learning. Placement experiences are becoming increasingly difficult to source and more expensive to resource. To address this, a bespoke "Virtual Placement" (VP) platform was designed to provide authentic, practice-oriented experiences. Students are introduced to their practice supervisor, Krish, who guides them along their learning journey, including virtual home visits to a patient, Lionel.</p>
+    <p>A key feature is the integration of the OpenAI API to power an AI-driven practice assessor, available to students 24/7 — providing on-demand guidance at any point in their learning journey. The chatbot was deliberately scoped and restricted to remain relevant only to the subject matter of the placement, ensuring a focused and educationally sound experience.</p>
+    <p>A built-in learning dashboard enables students to self-assess and track their development across key clinical competencies at three structured points — at the start, mid-point, and end of the placement. These self-assessments are mapped directly to the <strong>Common Placement Assessment Form (CPAF) 2024</strong>, the nationally recognised framework used by healthcare programmes to evaluate student competency in real-world placements.</p>
+    <p>Rollout was carefully managed to ensure genuine curriculum integration. The platform was embedded directly into Year 1 lectures, with sessions delivered in person. Completion was made compulsory prior to students attending their first real-world placement. This approach has been rolled out across four student cohorts (400+ users). Accessibility audits using WAVE, axe DevTools, and Silktide ensure compliance for diverse learners.</p>`,
+    tech: ['PHP', 'HTML5', 'JavaScript', 'OpenAI API', 'MySQL', 'OAuth 2.0', 'Apache ECharts', 'Bootstrap']
+  },
+  adhd: {
+    tag: 'Multilingual RLO',
+    title: 'ADHD Translation Resources',
+    images: [
+      { src: 'brain.png', alt: 'ADHD Translation Resource illustration' }
+    ],
+    body: `<p>This project focused on equipping healthcare professionals and the public with accessible information on assessing and recognising ADHD in both children and adults. The resources are endorsed by the Royal College of General Practitioners.</p>
+    <p>Split into <em>Understanding ADHD</em> and <em>The Role of the General Practitioner in ADHD Diagnosis and Management</em>, both were translated from English into French, Spanish, and German. This involved close collaboration with stakeholders and professional translators, alongside accessibility audits using WAVE, Silktide, and axe DevTools to ensure content is clear, inclusive, and usable for diverse audiences.</p>`,
+    tech: ['HTML5', 'CSS', 'PHP', 'JavaScript', 'WCAG Compliant', '4 Languages']
+  }
 };
-
-/* Scroll top */
-const sb = document.getElementById('scrollTop');
-window.addEventListener('scroll', () => sb.classList.toggle('visible', scrollY > 400));
-sb.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
-
-/* Nav compact */
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () =>
-  nav.style.padding = scrollY > 60 ? '0.7rem 3rem' : '1.2rem 3rem'
-);
