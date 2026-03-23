@@ -30,7 +30,7 @@ document.getElementById('imgModal').onclick = e => {
 /* ── VIDEO DATA ── */
 const videos = [
   {
-    src: 'videos/Carol.mp4',
+    src: 'https://youtu.be/dYHADdi7Nys',
     title: 'Carol Case Study',
     desc: 'A case study video produced as part of the Virtual Placement platform, introducing students to a patient scenario to support practice-oriented learning.'
   },
@@ -99,13 +99,29 @@ videos.forEach((v, i) => {
   // Extract filename for a nicer fallback label
   const filename = v.src.split('/').pop().replace(/\.[^.]+$/, '').replace(/_/g, ' ');
 
-  card.innerHTML = `
-    <div class="carousel-thumb">
+  // Check if it's a YouTube video
+  const isYouTube = v.src.includes('youtu.be') || v.src.includes('youtube.com');
+  let thumbHtml = '';
+
+  if (isYouTube) {
+    // Grab the YouTube ID and use the official YouTube thumbnail URL
+    const videoId = v.src.split('/').pop();
+    const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+    thumbHtml = `<img src="${thumbnailUrl}" style="width:100%;height:100%;object-fit:cover;" alt="${v.title} thumbnail">`;
+  } else {
+    // Canvas setup for .mp4 files
+    thumbHtml = `
       <div class="carousel-thumb-fallback">
         <i class="fas fa-film"></i>
         <span>${filename}</span>
       </div>
       <canvas style="display:none;width:100%;height:100%;object-fit:cover;"></canvas>
+    `;
+  }
+
+  card.innerHTML = `
+    <div class="carousel-thumb">
+      ${thumbHtml}
       <div class="carousel-play"><i class="fas fa-play"></i></div>
     </div>
     <div class="carousel-info">
@@ -116,9 +132,11 @@ videos.forEach((v, i) => {
   card.addEventListener('click', () => openVideoModal(i));
   track.appendChild(card);
 
-  // Generate thumbnail asynchronously
-  const canvas = card.querySelector('canvas');
-  generateThumbnail(v.src, canvas);
+  // Only run the canvas thumbnail generator if it's NOT a YouTube video
+  if (!isYouTube) {
+    const canvas = card.querySelector('canvas');
+    generateThumbnail(v.src, canvas);
+  }
 
   // Dot
   const dot = document.createElement('button');
@@ -168,8 +186,24 @@ function openVideoModal(index) {
     ? v.desc.split('\n\n').map(p => `<p>${p.trim()}</p>`).join('')
     : '<p style="color:var(--muted);font-style:italic">No additional notes for this video.</p>';
 
-  document.getElementById('vmodalPlayer').innerHTML =
-    `<div class="vmodal-embed"><video src="${v.src}" controls autoplay></video></div>`;
+  // Check if the source is a YouTube URL
+  if (v.src.includes('youtu.be') || v.src.includes('youtube.com')) {
+    // Extract the video ID from the youtu.be link
+    const videoId = v.src.split('/').pop(); 
+    document.getElementById('vmodalPlayer').innerHTML = `
+      <div class="vmodal-embed" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+        <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
+          src="https://www.youtube.com/embed/${videoId}?autoplay=1" 
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen>
+        </iframe>
+      </div>`;
+  } else {
+    // Standard HTML5 video for .mp4 files
+    document.getElementById('vmodalPlayer').innerHTML =
+      `<div class="vmodal-embed"><video style="width:100%;" src="${v.src}" controls autoplay></video></div>`;
+  }
 
   modal.classList.add('open');
   document.body.style.overflow = 'hidden';
