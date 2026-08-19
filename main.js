@@ -268,7 +268,7 @@ const projectData = {
       { src: 'images/brain.png', alt: 'ADHD Translation Resource illustration' }
     ],
     body: `<p>This project focused on equipping healthcare professionals and the public with accessible information on assessing and recognising ADHD in both children and adults. The resources are endorsed by the Royal College of General Practitioners.</p>
-    <p>Split into <em>Understanding ADHD</em> and <em>The Role of the General Practitioner in ADHD Diagnosis and Management</em>, both were translated from English into French, Spanish, and German. This involved close collaboration with stakeholders and professional translators, alongside accessibility audits using WAVE, Silktide, and axe DevTools to ensure content is clear, inclusive, and usable for diverse audiences.</p>`,
+    <p>Split into <em>Understanding ADHD</em> and <em>The Role of the General Practitioner in ADHD Diagnosis and Management</em>, both were translated from English into French, Spanish, and German. This involved close collaboration with global stakeholders and professional translators, alongside accessibility audits using WAVE, Silktide, and axe DevTools to ensure content is clear, inclusive, and usable for diverse audiences.</p>`,
     tech: ['HTML5', 'CSS', 'PHP', 'JavaScript', 'WCAG Compliant', '4 Languages']
   }
 };
